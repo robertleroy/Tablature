@@ -1,0 +1,158 @@
+@import "$lib/styles/reset.css";
+@import "$lib/styles/forms.css";
+@import "$lib/styles/icons.css";
+
+:root { 
+  --header-height: 3.5em;
+  --max-width: 100%;
+  --sidebar-width: 100vw;
+  --float: calc((100vw - var(--max-width)) / 2 );
+  --divisor: 0.25;
+  --pad: 1em;
+  --scrollbar: 8px;
+}
+
+header, aside { background-color: var(--background-color); }
+
+/* header { background-color: hsl(210, 30%, 95%); }
+aside { background-color: hsl(210, 30%, 90%); }
+main { background-color: hsl(210, 30%, 85%); }
+.flex, nav, .shell, .router {
+  background: rgba(0,0,0,0.05);
+} */
+
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-height);
+  border-bottom: 1px solid #ccc;
+  z-index: 20;
+
+  & .title {
+    display: flex;
+    align-items: center;
+    gap: 0 1ch;
+  }
+
+  & .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 var(--pad);
+  }
+  & .topnav {
+		display: flex;
+		gap: 0 2ch;
+	}
+}
+
+aside {
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  z-index: 10;
+
+  & nav {
+    position: relative;
+    width: var(--sidebar-width);
+    padding: 1em var(--pad);
+    height:100%;
+  }
+  & .sidenav {
+		display: grid;
+		margin: 0 0 1rem;
+	}
+  & .search_button {
+    position: absolute;
+    top: 1rem;
+    right: var(--pad);
+    z-index: 11;
+  }
+  & .panel {
+    position: absolute;
+  }
+}
+
+main {
+  height: calc(100% - var(--header-height));
+  margin: var(--header-height) 0 0 0;
+  transition: margin 300ms;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  & .router {
+    position: relative;
+    padding: 1rem var(--pad);
+    width: 100%;
+    /* width: min-content; */
+    min-width: calc(360 - 2em);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+.active { color: var(--active-color); }
+.tabTitle { display: none; }
+.songs { 
+  margin-left: 2ch; 
+}
+button.unset {
+  display: block;
+  line-height: 1.5;
+}
+.tablature {
+  position: absolute;
+  white-space: pre;
+  font-family: var(--monospace);
+  font-size: calc(1em - 5px);
+  /* width: fit-content; */
+}
+.searchControl { 
+  margin-bottom: 1rem;
+  & select {
+    width: 190px;
+  }
+  & sup, sub {
+    margin-left: 2ch;
+    opacity: 0.8;
+  }
+}
+.meta {  
+  position: absolute;
+  /* margin-top: 4rem; */
+  /* top: calc(100% + 12rem); */
+  bottom: 2rem;
+  z-index: 31;
+}
+.selected {
+  opacity: 0.6;
+}
+@media (min-width: 600px) {
+  :root { --pad: 2em; }
+  .tablature { font-size: calc(1em - 3px); }
+}
+@media (min-width: 900px) {
+  :root {
+    --max-width: 1400px;
+    --sidebar-width: calc(var(--max-width) * var(--divisor) );
+  }
+  main { margin-left: calc(var(--sidebar-width) ); }
+  button.menu { display: none; }
+  .tabTitle { display: initial; }
+}
+@media (min-width: 1400px) {
+  /* :root { --divisor: 0.29; } */
+  header .flex { margin: 0 var(--float); }
+  aside nav { margin-left: var(--float); }
+  main {
+    margin-left: calc(var(--sidebar-width) + var(--float));
+    & .shell { 
+      margin-right: calc(var(--float) - var(--scrollbar)); 
+    }
+    & .router { 
+      min-width: 600px; 
+    }
+  }
+}

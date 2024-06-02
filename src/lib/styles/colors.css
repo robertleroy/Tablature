@@ -1,0 +1,15 @@
+
+:root {
+  --orange: hsl(30,50%,50%);
+  --yellow: hsl(60,50%,50%);
+  --green: hsl(150,50%,50%);
+  --cyan: hsl(180,50%,50%);
+  --blue: hsl(210,50%,50%);
+  --darkblue: hsl(240,50%,50%);
+  --purple: hsl(270,50%,50%);
+  --pink: hsl(300,50%,50%);
+  --red: hsl(0,50%,50%);
+  --vue-green: hsl(153,47%,49%);
+  --vue-blue: hsl(211,28%,29%);
+  --text-color: hsl(210,30%,24%);
+}

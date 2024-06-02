@@ -1,0 +1,144 @@
+/* #region forms 5/8/24 */
+:root {
+  --button-height: calc(2em + 2px);
+  --button-background: unset;
+  --textbox-background: transparent;
+}
+ 
+:where(input:not([type="checkbox"], [type="radio"]),
+button, select, textarea), .button {
+  box-sizing: border-box;
+  font: inherit;
+  font-size: calc(1em - 1px);
+  color: inherit;
+  height: var(--button-height);
+  line-height: 2;
+  margin: 0;
+  padding: 0 1ch;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  text-transform: none;
+  vertical-align: baseline;
+}
+:where([disabled], .disabled) { 
+  cursor: default; 
+}
+
+/* #region button */
+:where(a.button) {
+  display: inline-block;  
+  text-decoration: none;
+  vertical-align: baseline;
+}
+:where(button, [type="button"],
+  [type="submit"], [type="reset"], 
+  [type="color"], .button, .btn) {
+  background-color: var(--button-background);
+  outline: none;
+  cursor: pointer;
+
+  &:hover:not(:active) { opacity: 0.6; }
+}
+:where([type="color"]) {  
+  width: 3em; 
+  padding: 0.75ch 1ch;
+  vertical-align: -0.375ch; 
+  /* 0.375ch = half padding */
+}
+select {
+  background-color: var(--background-color);
+  min-width: 8em;
+
+  & option {
+    background-color: var(--background-color) ;
+  }
+}
+:where(select[multiple]) {
+  height: fit-content;
+  background-image: none;
+}
+:where(optgroup) {
+  margin: 0;
+  font-family: inherit;
+}
+:where(button.unset) {
+  font-size: 1em;
+  line-height: 0;
+  height: unset;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: unset;
+  text-align: unset;
+}
+/* #endregion button */
+
+
+/* #region textbox */
+:where([type="text"], [type="number"],
+[type="search"], textarea,
+[type="email"], [type="tel"],
+[type="url"], [type="password"],
+[type="file"], [type="image"],
+[type="date"], [type="time"],
+[type="datetime-local"],
+[type="week"], [type="month"]) {
+  background-color: var(--textbox-background);
+
+  &:focus { border-color: transparent; }
+}
+:where([type="search"]) { appearance: textfield; }
+:where([type="number"]) { max-width: 5rem; }
+:where(textarea) {
+  height: unset;
+  line-height: 1.5;
+}
+::placeholder, ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+  font-size: calc(1em - 2px);
+}
+/* #endregion textbox */
+
+
+/* #region checkbox-radio */
+:where(label:has([type="checkbox"], [type="radio"]),
+  label:has(+ [type="checkbox"], + [type="radio"]),
+  [type="checkbox"] + label, [type="radio"] + label) {
+  cursor: pointer;
+}
+:where([type="checkbox"], [type="radio"]) {
+  --check-color: #333;
+  --check-disabled: #ccc;
+  box-sizing: border-box;
+  width: 1em; height: 1em;
+  font-size: 1em;
+  padding: 0; margin: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1em 1em;
+  border: 0.125em var(--check-color) solid;
+  appearance: none;
+  cursor: pointer; 
+  vertical-align: -0.125em;
+}
+:where([type="checkbox"]) { border-radius: 0.1875em;}
+:where([type="radio"]) { border-radius: 50%; }
+[type="checkbox"]:disabled, [type="radio"]:disabled  {
+  border-color: var(--check-disabled);
+  cursor: default;
+}
+[type="checkbox"]:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Cpath d="m 3.5,7.6464468 3,2.9999992 6,-5.9999992" fill="none" stroke="%23333" stroke-width="2" /%3E%3C/svg%3E');
+}
+[type="checkbox"]:checked:disabled {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Cpath d="m 3.5,7.6464468 3,2.9999992 6,-5.9999992" fill="none" stroke="%23ccc" stroke-width="2" /%3E%3C/svg%3E');
+}
+[type="radio"]:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Ccircle cx="8" cy="8" r="4" fill="%23333" /%3E%3C/svg%3E%0A');
+}
+[type="radio"]:checked:disabled {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Ccircle cx="8" cy="8" r="4" fill="%23ccc" /%3E%3C/svg%3E%0A');
+}
+/* #endregion checkbox-radio */
+/* #endregion forms */
