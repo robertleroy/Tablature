@@ -38,7 +38,7 @@ E| Tablature |--------------|--------------|--0-----------|--------------|`;
 <header>
 	<div class="flex" bind:clientWidth={flexWidth} style:fill="red">
 		<div class="title">
-			<div class="icon logo"></div>
+			<div class="icon logo" style="font-size: 1em"></div>
 			<div class="">{title}</div>
 		</div>
 
